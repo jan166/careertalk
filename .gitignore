@@ -8,6 +8,7 @@ deck_build/node_modules/
 
 # 생성 산출물 (HTML이 원본, deck_build/build.js 로 재생성 가능)
 *.pptx
+*.pdf
 
 # 타인 강의자료 · 참고 이미지 · 추출물 (저장소에 미포함)
 design ref/
