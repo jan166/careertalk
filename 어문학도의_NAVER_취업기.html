@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>어문학도의 NAVER 취업기 · 경희대 커리어 토크</title>
+
+<style>
+/* ===========================================
+   WEBFONTS
+   - 부크크 명조 (BookkMyungjo)  : 제목 전용  (noonnu 1084)
+   - 눈누 기초고딕 (NoonnuBasicGothic) : 본문 전용 (noonnu 1496)
+   =========================================== */
+@font-face{font-family:'BookkMyungjo';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/BookkMyungjo-Lt.woff2') format('woff2');font-weight:400;font-display:swap;}
+@font-face{font-family:'BookkMyungjo';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/BookkMyungjo-Bd.woff2') format('woff2');font-weight:700;font-display:swap;}
+@font-face{font-family:'NoonnuBasicGothic';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noon-2410@1.0/NoonnuBasicGothicRegular.woff2') format('woff2');font-weight:400;font-display:swap;}
+
+/* ===========================================
+   VIEWPORT FITTING MANDATORY BASE
+   =========================================== */
+html, body { height: 100%; overflow-x: hidden; }
+html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+.slide { width:100vw; height:100vh; height:100dvh; overflow:hidden; scroll-snap-align:start; display:flex; flex-direction:column; position:relative; }
+.slide-content { flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; max-height:100%; overflow:hidden; padding: var(--slide-padding); }
+:root{
+  --title-size: clamp(1.5rem,5vw,4rem);
+  --h2-size: clamp(1.3rem,3.4vw,2.5rem);
+  --h3-size: clamp(1rem,2.3vw,1.6rem);
+  --body-size: clamp(.8rem,1.45vw,1.08rem);
+  --small-size: clamp(.66rem,1vw,.86rem);
+  --slide-padding: clamp(1rem,4vw,3.5rem);
+}
+img,.image-container{ max-width:100%; max-height:min(50vh,400px); object-fit:contain; }
+@media (max-height:700px){ :root{ --slide-padding:clamp(.75rem,3vw,2rem); --h2-size:clamp(1.1rem,3vw,1.8rem);} }
+@media (max-height:600px){ :root{ --slide-padding:clamp(.5rem,2.5vw,1.5rem); --body-size:clamp(.72rem,1.2vw,.95rem);} .hint,#counter{display:none;} }
+@media (max-height:500px){ :root{ --slide-padding:clamp(.4rem,2vw,1rem);} }
+@media (prefers-reduced-motion:reduce){ *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.2s!important;} html{scroll-behavior:auto;} }
+
+/* ===========================================
+   TOKENS 종이 팔레트
+   =========================================== */
+:root{
+  --desk:#2a2620; --desk-2:#332e26;
+  --cream:#efe7d7; --creamlt:#f7f0e2;
+  --blue-soft:#aac1d1; --sage-soft:#bdc8ab; --blush-soft:#e4c8c2;
+  --blue-field:#6d93ad; --sage-field:#7e9a73; --blush-field:#c1938c;
+  --blue-ink:#2f4a5e; --sage-ink:#35492f; --blush-ink:#5e3a36;
+  --ink:#38332c; --ink-soft:#6f675b; --inkblue:#46627a;
+  --line:rgba(56,51,44,.16);
+  --tape:rgba(244,236,216,.78);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{ font-family:'NoonnuBasicGothic','IBM Plex Sans KR',sans-serif; background:var(--desk); color:var(--ink); -webkit-font-smoothing:antialiased; line-height:1.6; }
+
+/* grain helpers */
+.grain::after{content:'';position:absolute;inset:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");opacity:.05;mix-blend-mode:multiply;}
+
+/* dark desk slides (cover / TOC) */
+.slide.desk{ background:radial-gradient(120% 90% at 50% 0%,var(--desk-2) 0%,var(--desk) 72%); }
+.slide.desk::after{content:'';position:absolute;inset:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.07;mix-blend-mode:screen;}
+
+/* ===========================================
+   TYPOGRAPHY HELPERS
+   =========================================== */
+.serif{ font-family:'BookkMyungjo',serif; }            /* 제목 전용 명조 */
+.mono{ font-family:'NoonnuBasicGothic',sans-serif; }
+.script{ font-family:'NoonnuBasicGothic',sans-serif; line-height:1; }
+.kicker{ font-family:'NoonnuBasicGothic',sans-serif; font-weight:700; font-size:var(--small-size); letter-spacing:.2em; text-transform:uppercase; }
+h1,h2,.title-k{ font-family:'BookkMyungjo',serif; font-weight:700; }
+
+.reveal{opacity:0;transform:translateY(14px);}
+.slide.active .reveal{animation:rv .6s cubic-bezier(.2,.7,.25,1) forwards;}
+@keyframes rv{to{opacity:1;transform:none;}}
+.slide.active .d1{animation-delay:.10s}.slide.active .d2{animation-delay:.20s}.slide.active .d3{animation-delay:.30s}
+.slide.active .d4{animation-delay:.40s}.slide.active .d5{animation-delay:.50s}.slide.active .d6{animation-delay:.60s}
+.slide.active .d7{animation-delay:.70s}.slide.active .d8{animation-delay:.80s}
+
+/* decorations */
+.tape{position:absolute;width:clamp(82px,11vw,140px);height:clamp(24px,3vh,36px);background:var(--tape);box-shadow:0 2px 8px -3px rgba(0,0,0,.35);z-index:5;}
+.tape::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 6px,rgba(255,255,255,.25) 6px 7px);mix-blend-mode:overlay;}
+.flower{color:var(--inkblue);line-height:1;}
+
+/* ===========================================
+   SLIDE 1 · COVER  (닫힌 파란 폴더)
+   =========================================== */
+.coverwrap{position:relative;}
+.fcover{
+  position:relative; width:min(70vh,440px); max-width:88vw; aspect-ratio:5/6.6;
+  background:var(--blue-soft); border-radius:6px;
+  box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 30px 70px -26px rgba(0,0,0,.65),0 6px 16px -6px rgba(0,0,0,.4);
+  cursor:pointer; transition:transform .4s cubic-bezier(.2,.7,.25,1),box-shadow .4s;
+  animation:lift .7s cubic-bezier(.2,.7,.25,1) both; overflow:visible;
+}
+.fcover:hover{ transform:translateY(-6px) rotate(-.4deg); box-shadow:0 38px 84px -28px rgba(0,0,0,.7),0 8px 18px -6px rgba(0,0,0,.45); }
+@keyframes lift{from{opacity:0;transform:translateY(24px) scale(.98);}to{opacity:1;transform:none;}}
+.fcover .inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;padding:clamp(1.4rem,4vw,2.6rem) clamp(1.2rem,3.4vw,2rem);overflow:hidden;border-radius:6px;}
+/* embossed heart */
+.fcover .heart{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.55;pointer-events:none;}
+.fcover .heart svg{width:78%;height:78%;}
+.fcover .emboss-line{position:absolute;left:8%;right:8%;height:1px;background:rgba(47,74,94,.22);}
+/* right-edge index tabs (S2U Company / Guide / Report 스타일) */
+.ftabs{position:absolute;right:-26px;top:14%;display:flex;flex-direction:column;gap:14px;}
+.ftab{writing-mode:vertical-rl;background:var(--creamlt);color:var(--blue-ink);font-family:'NoonnuBasicGothic',sans-serif;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;padding:14px 6px;border-radius:0 6px 6px 0;box-shadow:4px 4px 12px -8px rgba(0,0,0,.5);}
+.ftab.b2{background:#e8e2d4;color:var(--ink-soft);}
+.ftab.b3{background:#ded7c8;color:var(--ink-soft);}
+
+.cov-kicker{position:relative;z-index:2;color:var(--blue-ink);}
+.cov-title{position:relative;z-index:2;color:#27414f;font-size:clamp(1.5rem,4.4vw,2.4rem);line-height:1.22;text-align:center;margin-top:clamp(1.4rem,4vh,2.6rem);}
+.cov-sub{position:relative;z-index:2;font-size:var(--small-size);color:var(--blue-ink);letter-spacing:.04em;margin-top:clamp(.8rem,2vh,1.2rem);text-align:center;}
+.cov-presented{position:relative;z-index:2;margin-top:auto;text-align:center;font-family:'NoonnuBasicGothic',sans-serif;font-size:.62rem;letter-spacing:.18em;color:var(--blue-ink);line-height:2;}
+.cov-label{position:relative;z-index:2;background:#fbf7ee;border:1px solid rgba(47,74,94,.4);padding:.5rem .9rem;margin:clamp(.7rem,2vh,1.1rem) auto 0;font-family:'NoonnuBasicGothic',sans-serif;font-weight:700;color:#27414f;font-size:var(--small-size);line-height:1.5;text-align:center;box-shadow:0 4px 10px -7px rgba(0,0,0,.4);}
+.cov-copy{position:relative;z-index:2;text-align:center;font-family:'NoonnuBasicGothic',sans-serif;font-size:.5rem;letter-spacing:.12em;color:rgba(47,74,94,.6);margin-top:clamp(.6rem,1.6vh,1rem);}
+.open-hint{margin-top:clamp(1rem,3vh,1.8rem);font-family:'NoonnuBasicGothic',sans-serif;font-size:.66rem;letter-spacing:.14em;color:rgba(244,236,216,.6);text-align:center;animation:pulse 2.4s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:.45;}50%{opacity:.9;}}
+
+/* ===========================================
+   SLIDE 2 · CONTENTS  (쌓인 폴더 목차)
+   =========================================== */
+.toc{width:min(94vw,1040px);height:min(86vh,700px);display:flex;flex-direction:column;}
+.toc-head{display:flex;justify-content:space-between;align-items:flex-start;color:rgba(244,236,216,.75);font-family:'NoonnuBasicGothic',sans-serif;font-size:var(--small-size);letter-spacing:.18em;text-transform:uppercase;line-height:1.4;margin-bottom:clamp(.8rem,2.4vh,1.6rem);}
+.folders{flex:1;display:flex;flex-direction:column;justify-content:center;gap:clamp(2px,.5vh,5px);min-height:0;}
+.fld{
+  position:relative;border-radius:8px 8px 4px 4px;padding:clamp(.45rem,1.4vh,.9rem) clamp(1rem,3vw,2rem);
+  display:flex;align-items:center;gap:clamp(.8rem,2vw,1.4rem);
+  box-shadow:0 -2px 0 rgba(255,255,255,.4) inset,0 10px 22px -16px rgba(0,0,0,.6);
+  cursor:pointer;transition:transform .3s cubic-bezier(.2,.7,.25,1);
+}
+.fld:hover{transform:translateX(10px);}
+.fld::before{content:'';position:absolute;top:-12px;left:clamp(1.4rem,4vw,3rem);width:clamp(90px,16vw,170px);height:14px;background:inherit;border-radius:8px 8px 0 0;}
+.fld .no{font-family:'NoonnuBasicGothic',sans-serif;font-weight:700;font-size:var(--small-size);opacity:.7;min-width:1.6em;}
+.fld .nm{font-family:'BookkMyungjo',serif;font-weight:700;font-size:clamp(1rem,2.2vw,1.5rem);}
+.fld .dc{font-family:'NoonnuBasicGothic',sans-serif;font-size:var(--small-size);opacity:.8;margin-left:auto;text-align:right;}
+.fld.c-blue{background:var(--blue-soft);color:var(--blue-ink);}
+.fld.c-blush{background:var(--blush-soft);color:var(--blush-ink);}
+.fld.c-sage{background:var(--sage-soft);color:var(--sage-ink);}
+.fld.c-cream{background:var(--creamlt);color:var(--ink-soft);}
+.toc-foot{margin-top:clamp(.8rem,2.4vh,1.5rem);color:rgba(244,236,216,.62);font-size:var(--small-size);line-height:1.7;max-width:62ch;}
+@media (max-width:640px){ .fld .dc{display:none;} }
+
+/* ===========================================
+   CONTENT SLIDES  (크림 배경 + 하우스 패널 + 흰 박스)
+   =========================================== */
+.slide.paper{ background:var(--cream); }
+.slide.paper .slide-content{position:relative;}
+.sheet{position:relative;width:min(90vw,980px);height:min(85vh,690px);display:flex;flex-direction:column;}
+.topbar{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:clamp(.5rem,1.6vh,1rem);color:var(--ink-soft);}
+.topbar .folio{font-family:'NoonnuBasicGothic',sans-serif;font-size:var(--small-size);opacity:.7;}
+
+.housewrap{flex:1;position:relative;min-height:0;display:flex;margin-top:clamp(26px,5vh,52px);}
+.field{
+  flex:1;position:relative;border-radius:6px;display:flex;flex-direction:column;
+  padding:clamp(1.1rem,3vw,2.4rem) clamp(1.2rem,3.4vw,2.6rem);min-height:0;overflow:hidden;
+  background:var(--af);box-shadow:0 22px 50px -26px rgba(0,0,0,.45);
+}
+/* 지붕(하우스 꼭짓점) */
+.field::before{content:'';position:absolute;left:0;right:0;top:0;height:clamp(26px,5vh,52px);background:var(--af);transform:translateY(-100%);clip-path:polygon(0 100%,50% 0,100% 100%);}
+.field-head{margin-bottom:clamp(.7rem,2vh,1.3rem);}
+.field-head .sec{font-family:'NoonnuBasicGothic',sans-serif;font-weight:700;font-size:var(--small-size);letter-spacing:.2em;color:rgba(255,255,255,.72);}
+.field-head h2{color:#fff;font-size:var(--h2-size);line-height:1.18;margin-top:.3rem;}
+.field-head .sub{color:rgba(255,255,255,.85);font-size:var(--body-size);margin-top:.4rem;}
+
+.boxes{flex:1;min-height:0;display:flex;flex-direction:column;gap:clamp(.4rem,1.3vh,.85rem);justify-content:center;}
+.mbox{background:#fcf8ef;color:var(--aink);border-radius:4px;padding:clamp(.45rem,1.3vw,.75rem) clamp(.7rem,1.8vw,1.1rem);box-shadow:0 3px 8px -4px rgba(0,0,0,.25);width:fit-content;max-width:100%;}
+.mbox .b{font-family:'NoonnuBasicGothic',sans-serif;font-weight:700;font-size:var(--body-size);}
+.mbox .s{font-family:'NoonnuBasicGothic',sans-serif;font-size:var(--small-size);color:var(--ink-soft);line-height:1.5;}
+.mbox.row{display:flex;align-items:baseline;gap:.7rem;width:100%;}
+.mbox .no{font-family:'NoonnuBasicGothic',sans-serif;font-weight:700;color:var(--af);font-size:var(--body-size);min-width:1.4em;}
+
+/* white-box theme inks */
+.f-blue{--af:var(--blue-field);--aink:var(--blue-ink);}
+.f-sage{--af:var(--sage-field);--aink:var(--sage-ink);}
+.f-blush{--af:var(--blush-field);--aink:var(--blush-ink);}
+
+/* section emblem (themed line-icon, fills the panel whitespace) */
+.field-emblem{position:absolute;right:clamp(8px,2vw,26px);bottom:clamp(10px,2vh,30px);width:clamp(108px,17vw,210px);height:auto;color:#fff;opacity:.14;pointer-events:none;z-index:0;}
+.field > *:not(.field-emblem){position:relative;z-index:1;}
+
+/* chips (strength) */
+.chips{display:flex;flex-wrap:wrap;gap:clamp(.4rem,1vw,.7rem);}
+.chips .mbox{padding:.4rem .85rem;font-family:'NoonnuBasicGothic',sans-serif;font-weight:700;font-size:clamp(.9rem,1.7vw,1.2rem);}
+/* role grid */
+.rgrid{flex:1;min-height:0;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(.45rem,1.2vw,.85rem);}
+.rgrid .mbox{width:auto;display:flex;flex-direction:column;justify-content:center;gap:.15rem;}
+@media (max-width:620px){ .rgrid{grid-template-columns:1fr 1fr;} }
+/* quote notes (why) */
+.qnotes{flex:1;min-height:0;display:flex;gap:clamp(.7rem,2vw,1.4rem);align-items:stretch;}
+.qnotes .mbox{flex:1;width:auto;display:flex;flex-direction:column;padding:clamp(.9rem,2.2vw,1.5rem);}
+.qnotes .qm{font-family:'NoonnuBasicGothic',sans-serif;font-size:clamp(1.6rem,3.4vw,2.6rem);color:var(--af);line-height:.6;}
+.qnotes .qt{font-family:'NoonnuBasicGothic',sans-serif;font-size:var(--body-size);line-height:1.65;flex:1;}
+.qnotes .by{font-family:'NoonnuBasicGothic',sans-serif;font-size:var(--small-size);letter-spacing:.05em;color:var(--af);margin-top:.5rem;}
+.foot{margin-top:clamp(.5rem,1.4vh,1rem);color:rgba(255,255,255,.82);font-size:var(--small-size);display:flex;align-items:center;gap:.5rem;}
+.foot .flower{color:#fff;}
+
+/* arrow tag */
+.arrowtag{display:inline-flex;align-items:center;gap:.6rem;font-family:'NoonnuBasicGothic',sans-serif;font-weight:700;color:#fff;font-size:var(--h3-size);}
+.arrowtag .ar{font-family:'NoonnuBasicGothic',sans-serif;font-size:1.3em;}
+
+/* ===========================================
+   Q&A (content variant)
+   =========================================== */
+.qa{flex:1;min-height:0;display:flex;flex-direction:column;gap:clamp(.4rem,1.2vh,.75rem);justify-content:center;}
+.qa .mbox{width:100%;display:flex;align-items:baseline;gap:.9rem;font-family:'NoonnuBasicGothic',sans-serif;font-size:var(--body-size);}
+.qa .q{font-family:'NoonnuBasicGothic',sans-serif;font-weight:700;color:var(--af);flex:none;}
+.qa .qbody{display:flex;flex-direction:column;gap:.2rem;}
+.qa .qq{font-weight:700;color:var(--aink);}
+.qa .qans{font-weight:400;font-size:var(--small-size);color:var(--ink-soft);line-height:1.55;}
+
+/* ===========================================
+   SLIDE LAST · LETTER (To Our Community 스타일)
+   =========================================== */
+.slide.letterbg{ background:radial-gradient(130% 100% at 50% 30%,#b7cad8 0%,#9bb6c8 60%,#86a4b8 100%); }
+.slide.letterbg::after{content:'';position:absolute;inset:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='l'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23l)'/%3E%3C/svg%3E");opacity:.05;mix-blend-mode:multiply;}
+.paperletter{position:relative;width:min(82vw,640px);height:min(88vh,760px);background:#f3ecdd;border-radius:3px;box-shadow:0 30px 70px -24px rgba(0,0,0,.45);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(2rem,6vw,4rem) clamp(2.4rem,7vw,5rem) clamp(2rem,6vw,3.4rem);overflow:hidden;}
+.paperletter .rings{position:absolute;left:clamp(-10px,-1.4vw,-6px);top:0;bottom:0;width:34px;display:flex;flex-direction:column;justify-content:space-evenly;align-items:center;}
+.paperletter .ring{width:clamp(26px,3vw,38px);height:clamp(16px,2vh,24px);border:3px solid rgba(60,72,86,.6);border-radius:999px;}
+.lt-head{font-family:'NoonnuBasicGothic',sans-serif;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--inkblue);font-size:var(--small-size);}
+.lt-script{font-family:'BookkMyungjo',serif;font-weight:700;color:var(--inkblue);font-size:clamp(2.6rem,7vw,4.6rem);margin:clamp(.8rem,2.4vh,1.6rem) 0 clamp(1rem,3vh,2rem);line-height:1;}
+.lt-body{font-family:'NoonnuBasicGothic',sans-serif;color:#3d5163;font-size:clamp(.9rem,1.8vw,1.2rem);line-height:2.05;max-width:42ch;white-space:pre-line;}
+.lt-sign{font-family:'NoonnuBasicGothic',sans-serif;color:var(--inkblue);font-size:var(--small-size);margin-top:clamp(1rem,3vh,1.8rem);line-height:1.8;}
+.lt-flower{color:var(--inkblue);font-size:clamp(1.3rem,2.4vw,1.9rem);margin-top:clamp(.9rem,2.6vh,1.6rem);}
+
+/* ===========================================
+   NAV CHROME
+   =========================================== */
+#rail{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:50;display:flex;flex-direction:column;gap:4px;padding:8px 0;}
+#rail .rtab{cursor:pointer;background:var(--creamlt);color:var(--ink-soft);border-radius:6px 0 0 6px;padding:6px 11px 6px 13px;font-family:'NoonnuBasicGothic',sans-serif;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;text-align:right;box-shadow:-4px 4px 12px -8px rgba(0,0,0,.6);opacity:.5;transform:translateX(calc(100% - 26px));transition:transform .35s cubic-bezier(.2,.7,.25,1),opacity .3s,background .3s,color .3s;}
+#rail .rtab b{display:inline-block;min-width:1.4em;}
+#rail .rtab:hover{transform:translateX(0);opacity:.92;}
+#rail .rtab.on{opacity:1;transform:translateX(0);background:var(--inkblue);color:#f4ecdd;}
+@media (max-width:760px){ #rail{display:none;} }
+#bar{position:fixed;left:0;top:0;height:3px;width:0;background:var(--inkblue);z-index:60;transition:width .35s ease;}
+#counter{position:fixed;left:clamp(12px,2vw,26px);bottom:clamp(12px,2.5vh,24px);z-index:55;font-family:'NoonnuBasicGothic',sans-serif;font-size:.7rem;letter-spacing:.16em;color:rgba(120,120,120,.55);mix-blend-mode:difference;}
+.hint{position:fixed;right:clamp(12px,2vw,26px);bottom:clamp(12px,2.5vh,24px);z-index:55;font-family:'NoonnuBasicGothic',sans-serif;font-size:.6rem;letter-spacing:.1em;color:rgba(120,120,120,.5);mix-blend-mode:difference;display:flex;gap:.5rem;align-items:center;}
+.hint .key{border:1px solid currentColor;border-radius:4px;padding:1px 6px;}
+@media (max-height:600px){ .hint,#counter{display:none;} }
+</style>
+</head>
+<body>
+
+<div id="bar"></div>
+<div id="rail"></div>
+<div id="counter">01 / 12</div>
+<div class="hint"><span class="key">←</span><span class="key">→</span><span class="key">SPACE</span></div>
+
+<!-- ============ 1 · COVER ============ -->
+<section class="slide desk" data-code="00" data-chap="COVER">
+  <div class="slide-content">
+    <div class="coverwrap">
+      <div class="fcover grain" id="coverFolder" title="클릭하면 전체화면으로 시작">
+        <!-- 우측 인덱스 탭 -->
+        <div class="ftabs">
+          <div class="ftab">STORY</div>
+          <div class="ftab b2">GUIDE</div>
+          <div class="ftab b3">Q&amp;A</div>
+        </div>
+        <div class="heart"><svg viewBox="0 0 200 210"><path d="M100 188 C36 138 16 100 16 66 C16 38 37 20 60 20 C80 20 92 34 100 52 C108 34 120 20 140 20 C163 20 184 38 184 66 C184 100 164 138 100 188 Z" fill="none" stroke="rgba(39,65,79,.22)" stroke-width="2"/></svg></div>
+        <div class="inner">
+          <div class="cov-kicker kicker reveal d1">KYUNGHEE UNIV. · CAREER TALK</div>
+          <h1 class="cov-title serif reveal d2">어문학도의<br><span style="font-family:'BookkMyungjo',serif;font-weight:700;">NAVER</span> 취업기</h1>
+          <div class="cov-sub reveal d3">어문학이라는 무기로, 나만의 길을 그리다</div>
+          <div class="cov-presented reveal d4">PRESENTED BY<br>정효주 · NAVER</div>
+          <div class="cov-copy reveal d5">© 2026 SALES PLANNING. ALL RIGHTS RESERVED.</div>
+        </div>
+      </div>
+      <div class="tape" style="bottom:-10px;left:50%;transform:translateX(-50%) rotate(-2deg);"></div>
+    </div>
+    <div class="open-hint reveal d6">▸ 폴더를 클릭하면 전체화면으로 시작합니다</div>
+  </div>
+</section>
+
+<!-- ============ 2 · CONTENTS ============ -->
+<section class="slide desk" data-code="01" data-chap="목차">
+  <div class="slide-content">
+    <div class="toc">
+      <div class="toc-head reveal d1">
+        <span>어문학도의<br>NAVER 취업기</span>
+        <span>CONTENTS</span>
+      </div>
+      <div class="folders">
+        <div class="fld c-blue reveal d1" data-go="2"><span class="no">01</span><span class="nm">연사 소개</span><span class="dc">PROFILE 전공은 출발점</span></div>
+        <div class="fld c-blush reveal d2" data-go="3"><span class="no">02</span><span class="nm">인문학의 시대</span><span class="dc">WHY AI 시대의 인간 능력</span></div>
+        <div class="fld c-sage reveal d2" data-go="4"><span class="no">03</span><span class="nm">나의 강점 발견</span><span class="dc">STRENGTH 읽는 힘</span></div>
+        <div class="fld c-cream reveal d3" data-go="5"><span class="no">04</span><span class="nm">강점을 직무로</span><span class="dc">ROLE 회사보다 직무</span></div>
+        <div class="fld c-blue reveal d3" data-go="6"><span class="no">05</span><span class="nm">인턴으로 증명</span><span class="dc">PROVE 정규직 전환</span></div>
+        <div class="fld c-blush reveal d4" data-go="7"><span class="no">06</span><span class="nm">결국, 태도</span><span class="dc">ATTITUDE 합격을 만드는 것</span></div>
+        <div class="fld c-sage reveal d4" data-go="8"><span class="no">07</span><span class="nm">오래갈 커리어</span><span class="dc">FUTURE 복리로 쌓인다</span></div>
+        <div class="fld c-cream reveal d5" data-go="9"><span class="no">08</span><span class="nm">오늘부터 해볼 것</span><span class="dc">ACTION 작게, 지금 바로</span></div>
+      </div>
+      <div class="toc-foot reveal d6">전공이라는 출발점에서 시작해 강점을 발견하고, 직무로 연결하고, 태도로 증명하기까지 어문학도가 NAVER에 닿은 길을 폴더 하나씩 펼쳐 봅니다.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3 · PROFILE ============ -->
+<section class="slide paper" data-code="02" data-chap="PROFILE">
+  <div class="slide-content">
+    <div class="sheet">
+      <div class="topbar"><span class="kicker reveal d1">PROFILE · 01</span><span class="folio reveal d1">어문학도의 NAVER 취업기</span></div>
+      <div class="housewrap f-blue">
+        <div class="field reveal d2">
+          <svg class="field-emblem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.6"/><path d="M5 20.5c0-3.9 3.1-6.5 7-6.5s7 2.6 7 6.5"/></svg>
+          <div class="field-head"><div class="sec">PROFILE 연사 소개</div><h2>전공은 출발점, 커리어는 강점으로 완성된다</h2></div>
+          <div class="boxes" style="justify-content:flex-start;gap:clamp(.5rem,1.8vh,1.1rem);">
+            <div style="display:flex;gap:clamp(.8rem,2.6vw,2rem);flex:1;min-height:0;">
+              <div class="reveal d3" style="flex:1;display:flex;flex-direction:column;gap:clamp(.3rem,1vh,.55rem);">
+                <div style="font-family:'NoonnuBasicGothic',sans-serif;font-weight:700;font-size:var(--small-size);letter-spacing:.14em;color:rgba(255,255,255,.8);margin-bottom:.15rem;">학부 · ACADEMIC</div>
+                <div class="mbox"><span class="b">스페인어학 · 행정학</span><span class="s"> 복수전공</span></div>
+                <div class="mbox"><span class="b">대외활동</span><span class="s"> 학기별 1개 이상</span></div>
+                <div class="mbox"><span class="b">KOTRA 도미니카공화국</span><span class="s"> 해외공관 인턴</span></div>
+                <div class="mbox"><span class="b">스페인 콤포스텔라 대학교</span><span class="s"> 해외연수</span></div>
+                <div class="mbox"><span class="b">멕시코 과달라하라 대학교</span><span class="s"> 교환학생</span></div>
+              </div>
+              <div class="reveal d5" style="flex:1;display:flex;flex-direction:column;gap:clamp(.3rem,1vh,.55rem);">
+                <div style="font-family:'NoonnuBasicGothic',sans-serif;font-weight:700;font-size:var(--small-size);letter-spacing:.14em;color:rgba(255,255,255,.8);margin-bottom:.15rem;">커리어 · CAREER</div>
+                <div class="mbox"><span class="b">NAVER 클로바 AI 인턴</span><span class="s"> → 정규직 전환</span></div>
+                <div class="mbox"><span class="b">NAVER 클로바 · AI 기획</span><span class="s"> 4년</span></div>
+                <div class="mbox"><span class="b">NAVER 광고 · 세일즈 기획</span><span class="s"> 1년</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4 · WHY ============ -->
+<section class="slide paper" data-code="03" data-chap="WHY">
+  <div class="slide-content">
+    <div class="sheet">
+      <div class="topbar"><span class="kicker reveal d1">WHY HUMANITIES · 02</span><span class="folio reveal d1">어문학도의 NAVER 취업기</span></div>
+      <div class="housewrap f-blush">
+        <div class="field reveal d2">
+          <svg class="field-emblem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5h16v10.5h-9l-4.5 4v-4H4z"/><path d="M8 9.5h8M8 12.5h5"/></svg>
+          <div class="field-head"><div class="sec">인문학의 시대가 온다</div><h2>AI 시대, 가장 인간적인 능력이 가장 강하다</h2></div>
+          <div class="qnotes">
+            <div class="mbox reveal d3"><div class="qm">“</div><div class="qt">철학 학위가 좋은 취업 전망이라는 말, 마지막으로 들어본 게 언제인가요? 그런데 이제는 그렇습니다.</div><div class="by">JACK CLARK · Anthropic 공동창업자</div></div>
+            <div class="mbox reveal d4"><div class="qm">“</div><div class="qt">인문학 공부는 그 어느 때보다 중요해질 것입니다. Anthropic은 기술보다 커뮤니케이션 · 대인 능력 · 친절함을 우선해 채용합니다.</div><div class="by">DANIELA AMODEI · Anthropic 공동창업자·President</div></div>
+          </div>
+          <div class="foot reveal d5"><span class="flower">✽</span> 커뮤니케이션·철학 등 인문학 역량의 수요가 빠르게 오르고 있다. &nbsp;SOURCE · FORTUNE 2026.2 · ENTREPRENEUR</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5 · STRENGTH ============ -->
+<section class="slide paper" data-code="04" data-chap="STRENGTH">
+  <div class="slide-content">
+    <div class="sheet">
+      <div class="topbar"><span class="kicker reveal d1">STRENGTH · 03</span><span class="folio reveal d1">어문학도의 NAVER 취업기</span></div>
+      <div class="housewrap f-sage">
+        <div class="field reveal d2">
+          <svg class="field-emblem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7C9.8 5.6 7 5 3.5 5v12.5C7 17.5 9.8 18 12 19.4 14.2 18 17 17.5 20.5 17.5V5C17 5 14.2 5.6 12 7z"/><path d="M12 7v12.4"/></svg>
+          <div class="field-head"><div class="sec">나의 강점 발견</div><h2>읽는 법을 배우면, 무엇이든 읽어낼 수 있다</h2></div>
+          <div class="boxes">
+            <div class="mbox reveal d3" style="width:100%;"><div class="s" style="font-size:var(--body-size);color:var(--blush-ink);line-height:1.7;">스페인 소설 수업에서 ‘적극적 읽기’를 배웠다. 행간과 맥락을 끝까지 파고드는 읽기. 그 읽는 법을 익히자, 맥락 파악이 어려운 AI 논문조차 빠르게 흡수할 수 있었다 전공이 길러준 ‘읽는 힘’은 어떤 분야로도 옮겨졌다.</div></div>
+            <div class="reveal d4" style="margin-top:.3rem;"><div class="sec" style="font-family:'NoonnuBasicGothic',sans-serif;font-weight:700;font-size:var(--small-size);letter-spacing:.2em;color:rgba(255,255,255,.78);margin-bottom:.5rem;">어문학이 길러준 힘</div>
+              <div class="chips"><span class="mbox">언어</span><span class="mbox">깊이 읽기</span><span class="mbox">맥락 이해</span><span class="mbox">사고력</span><span class="mbox">문화 감수성</span></div>
+            </div>
+          </div>
+          <div class="foot reveal d5"><span class="flower">✽</span> 대학은 깊게 사고하고, 내가 무엇을 좋아하는지 가장 자유롭게 탐구할 수 있는 시간이다.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6 · ROLE ============ -->
+<section class="slide paper" data-code="05" data-chap="ROLE">
+  <div class="slide-content">
+    <div class="sheet">
+      <div class="topbar"><span class="kicker reveal d1">ROLE · 04</span><span class="folio reveal d1">어문학도의 NAVER 취업기</span></div>
+      <div class="housewrap f-blue">
+        <div class="field reveal d2">
+          <svg class="field-emblem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M15.5 8.5l-2.2 5.2-5.2 2.2 2.2-5.2z"/></svg>
+          <div class="field-head"><div class="sec">강점을 직무로 연결하기</div><h2>회사보다 직무, 직무는 강점에서 출발</h2><div class="sub">직무가 우선 업계·회사는 그 다음. 내 강점이 빛나는 직무부터 찾는다.</div></div>
+          <div class="rgrid reveal d3">
+            <div class="mbox"><span class="b">기획</span><span class="s">사업·서비스를 설계하고 끌고 간다</span></div>
+            <div class="mbox"><span class="b">마케팅</span><span class="s">메시지로 사람의 마음을 움직인다</span></div>
+            <div class="mbox"><span class="b">세일즈</span><span class="s">관계와 설득으로 성과를 만든다</span></div>
+            <div class="mbox"><span class="b">글로벌·해외사업</span><span class="s">언어와 문화 감수성이 무기</span></div>
+            <div class="mbox"><span class="b">콘텐츠</span><span class="s">이야기를 만들고 다듬는다</span></div>
+            <div class="mbox"><span class="b">브랜드·커뮤니케이션</span><span class="s">조직의 언어를 설계한다</span></div>
+          </div>
+          <div class="foot reveal d5"><span class="flower">✽</span> 나는 강점을 살려 세일즈기획 직무로 NAVER에서 스포츠 스폰서십을 기획하고 있다.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7 · PROVE ============ -->
+<section class="slide paper" data-code="06" data-chap="PROVE">
+  <div class="slide-content">
+    <div class="sheet">
+      <div class="topbar"><span class="kicker reveal d1">PROVE · 05</span><span class="folio reveal d1">어문학도의 NAVER 취업기</span></div>
+      <div class="housewrap f-sage">
+        <div class="field reveal d2">
+          <svg class="field-emblem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2l7.5 2.8v5.4c0 4.7-3.2 7.6-7.5 8.6-4.3-1-7.5-3.9-7.5-8.6V6z"/><path d="M8.8 12l2.2 2.2 4.2-4.4"/></svg>
+          <div class="field-head"><div class="sec">인턴으로 증명하기</div><h2>들어가서 증명하는 게 가장 빠른 길</h2>
+            <div class="arrowtag" style="margin-top:.6rem;">인턴 <span class="ar">→</span> 정규직 전환</div></div>
+          <div class="boxes">
+            <div class="mbox row reveal d3"><span class="no">1</span><span><span class="b">작게 시작했다</span><span class="s"> 관심 직무에 인턴으로 뛰어들어 실무를 경험</span></span></div>
+            <div class="mbox row reveal d4"><span class="no">2</span><span><span class="b">끝까지 책임졌다</span><span class="s"> 작은 일이라도 내 일처럼 마무리하며 신뢰를 쌓음</span></span></div>
+            <div class="mbox row reveal d5"><span class="no">3</span><span><span class="b">전환으로 이어졌다</span><span class="s"> ‘함께 일하고 싶은 사람’이라는 평가가 정규직으로</span></span></div>
+          </div>
+          <div class="foot reveal d6"><span class="flower">✽</span> 인턴은 ‘스펙 한 줄’이 아니라, 직무 적합성을 직접 증명하는 시간이다.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8 · ATTITUDE ============ -->
+<section class="slide paper" data-code="07" data-chap="ATTITUDE">
+  <div class="slide-content">
+    <div class="sheet">
+      <div class="topbar"><span class="kicker reveal d1">ATTITUDE · 06</span><span class="folio reveal d1">어문학도의 NAVER 취업기</span></div>
+      <div class="housewrap f-blush">
+        <div class="field reveal d2">
+          <svg class="field-emblem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 6.1L20 11l-6.1 1.9L12 19l-1.9-6.1L4 11l6.1-1.9z"/></svg>
+          <div class="field-head"><div class="sec">결국, 가장 중요한 건 ‘태도’</div><h2>스펙이 아니라 태도가 합격을 만든다</h2><div class="sub">“저를 왜 뽑으셨어요?” 라고 물었더니 </div></div>
+          <div class="boxes">
+            <div class="mbox row reveal d3"><span class="no">1</span><span><span class="b">적극적으로 배우는 태도</span><span class="s"> 무엇이든 먼저 묻고, 먼저 배우려 했다</span></span></div>
+            <div class="mbox row reveal d4"><span class="no">2</span><span><span class="b">없으면 안 될 사람</span><span class="s"> 팀에 자연스럽게 녹아들어 ‘이 사람 없으면 안 되겠다’는 느낌을 줬다</span></span></div>
+          </div>
+          <div class="foot reveal d5"><span class="ar serif" style="color:#fff;">→</span> Anthropic도 기술보다 커뮤니케이션·사람·태도로 뽑는다고 했다. 태도는 어디서나 통한다.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9 · FUTURE ============ -->
+<section class="slide paper" data-code="08" data-chap="FUTURE">
+  <div class="slide-content">
+    <div class="sheet">
+      <div class="topbar"><span class="kicker reveal d1">FUTURE · 07</span><span class="folio reveal d1">어문학도의 NAVER 취업기</span></div>
+      <div class="housewrap f-sage">
+        <div class="field reveal d2">
+          <svg class="field-emblem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4.5v15h15.5" opacity=".55"/><path d="M7 15.5l3.5-3.5 3 3 5-5.5"/><path d="M16 9.5h4v4"/></svg>
+          <div class="field-head"><div class="sec">오래갈 커리어 빌딩</div><h2>레이스는 길다 강점과 태도는 복리로 쌓인다</h2></div>
+          <div class="boxes">
+            <div class="mbox row reveal d3"><span class="no">01</span><span><span class="b">강점을 확장한다</span><span class="s"> 잘하는 것을 깊게, 그리고 인접 영역으로 넓혀간다</span></span></div>
+            <div class="mbox row reveal d4"><span class="no">02</span><span><span class="b">태도로 신뢰를 쌓는다</span><span class="s"> 함께 일하고 싶은 사람이라는 평판이 기회를 부른다</span></span></div>
+            <div class="mbox row reveal d5"><span class="no">03</span><span><span class="b">나의 모양을 닮은 길로</span><span class="s"> 남을 따라가지 않고, 내 색을 가진 커리어를 그린다</span></span></div>
+          </div>
+          <div class="foot reveal d6"><span class="flower">✽</span> 합격은 끝이 아니라 시작이다. 꾸준히 쌓으면 커리어는 시간이 갈수록 단단해진다.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10 · ACTION ============ -->
+<section class="slide paper" data-code="09" data-chap="ACTION">
+  <div class="slide-content">
+    <div class="sheet">
+      <div class="topbar"><span class="kicker reveal d1">ACTION · 08</span><span class="folio reveal d1">어문학도의 NAVER 취업기</span></div>
+      <div class="housewrap f-blue">
+        <div class="field reveal d2">
+          <svg class="field-emblem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 7h10M10 12h10M10 17h10"/><path d="M3.5 6.2l1.4 1.4L7.6 5M3.5 11.2l1.4 1.4L7.6 10M3.5 16.2l1.4 1.4L7.6 15"/></svg>
+          <div class="field-head"><div class="sec">오늘부터 해볼 것</div><h2>작게, 그러나 지금 바로</h2></div>
+          <div class="boxes" style="gap:clamp(.3rem,1vh,.6rem);">
+            <div class="mbox row reveal d3"><span class="no">1</span><span><span class="b">강점 키워드 3개 뽑기</span><span class="s"> 시간 가는 줄 몰랐던 수업·책 3개에서 ‘왜?’를 파고들어 키워드 찾기</span></span></div>
+            <div class="mbox row reveal d4"><span class="no">2</span><span><span class="b">‘적극적 읽기’ 한 편</span><span class="s"> 어려운 글 1편 → 한 줄 요약 + 질문 3개 + 다르게 볼 지점 1개</span></span></div>
+            <div class="mbox row reveal d5"><span class="no">3</span><span><span class="b">채용공고 1개 해부</span><span class="s"> 자격요건을 ‘내 강점 언어’로 번역하고, 없는 건 메모</span></span></div>
+            <div class="mbox row reveal d6"><span class="no">4</span><span><span class="b">커피챗 1건</span><span class="s"> 가고 싶은 분야의 현직자·선배에게 15분 대화를 정중히 요청</span></span></div>
+            <div class="mbox row reveal d7"><span class="no">5</span><span><span class="b">‘나의 모양’ 한 문장</span><span class="s"> “나는 ___할 때 가장 나답다 / 오래 즐겁게 할 수 있다” 채워 보기</span></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 11 · Q&A ============ -->
+<section class="slide paper" data-code="10" data-chap="Q&A">
+  <div class="slide-content">
+    <div class="sheet">
+      <div class="topbar"><span class="kicker reveal d1">FREQUENTLY ASKED · FAQ</span><span class="folio reveal d1">어문학도의 NAVER 취업기</span></div>
+      <div class="housewrap f-blush">
+        <div class="field reveal d2">
+          <svg class="field-emblem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M9.2 9.2a3 3 0 1 1 4.2 2.9c-1.1.6-1.7 1.3-1.7 2.6"/><circle cx="11.7" cy="18" r=".5" fill="currentColor" stroke="none"/></svg>
+          <div class="field-head"><div class="sec">자주 받는 질문</div><h2>제가 가장 많이 받는 질문 4가지</h2></div>
+          <div class="qa">
+            <div class="mbox reveal d3"><span class="q">Q1</span><span class="qbody"><span class="qq">어문 전공의 활용성은?</span><span class="qans">‘깊게 읽고 정확히 쓰는’ 힘은 어느 직무로도 옮겨갑니다. 전공은 출발점일 뿐이에요.</span></span></div>
+            <div class="mbox reveal d4"><span class="q">Q2</span><span class="qbody"><span class="qq">인턴 → 전환, 팁이 있다면?</span><span class="qans">작은 일도 끝까지 책임지는 것. ‘함께 일하고 싶은 사람’이 되면 전환은 따라옵니다.</span></span></div>
+            <div class="mbox reveal d5"><span class="q">Q3</span><span class="qbody"><span class="qq">AI 시대, 어떻게 준비할까?</span><span class="qans">도구는 익히되, 사람·맥락·커뮤니케이션처럼 AI가 약한 ‘인간적 능력’을 키우세요.</span></span></div>
+            <div class="mbox reveal d6"><span class="q">Q4</span><span class="qbody"><span class="qq">세일즈기획은 어떤 일?</span><span class="qans">데이터와 관계로 광고·스폰서십을 설계하는 일. 기획·설득·숫자가 함께 갑니다.</span></span></div>
+          </div>
+          <div class="foot reveal d7" style="justify-content:flex-end;"><span class="script" style="font-size:clamp(1.6rem,3.6vw,2.6rem);color:#fff;">더 궁금한 건 지금 물어보세요 &nbsp;✽</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 12 · LETTER (closing) ============ -->
+<section class="slide letterbg" data-code="11" data-chap="LETTER">
+  <div class="slide-content">
+    <div class="paperletter grain">
+      <div class="rings"><span class="ring reveal d1"></span><span class="ring reveal d2"></span><span class="ring reveal d3"></span></div>
+      <div class="lt-head reveal d1">TO STUDENTS · 어문학도에게</div>
+      <div class="lt-script reveal d2">Draw your own path</div>
+      <div class="lt-body reveal d3">취업이 잘 되는 전공은 있을 수 있어도,
+결국 특별함은 내가 만들어 나가는 것.
+
+지금 내가 듣는 수업이, 책 한 줄이,
+그 모든 것이 나의 자산이 될 수 있다는
+태도로 임하면 
+
+지금 잠깐 헤매더라도, 어느새
+나의 모양을 닮은 길을 그려가며
+원하는 곳에 도달해 있을 거예요.</div>
+      <div class="lt-flower reveal d6">✽</div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const rail = document.getElementById('rail');
+  const bar = document.getElementById('bar');
+  const counter = document.getElementById('counter');
+  let cur = 0;
+
+  /* 우측 인덱스 탭 */
+  slides.forEach((s,i)=>{
+    const t=document.createElement('div'); t.className='rtab';
+    t.innerHTML='<b>'+s.dataset.code+'</b> '+s.dataset.chap;
+    t.addEventListener('click',()=>goTo(i)); rail.appendChild(t);
+  });
+  const rtabs=Array.from(rail.children);
+
+  function goTo(i){ i=Math.max(0,Math.min(slides.length-1,i)); slides[i].scrollIntoView({behavior:'smooth'}); }
+
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{
+    if(e.isIntersecting && e.intersectionRatio>0.55){
+      cur=slides.indexOf(e.target);
+      slides.forEach(s=>s.classList.remove('active')); e.target.classList.add('active');
+      rtabs.forEach((t,idx)=>t.classList.toggle('on',idx===cur));
+      bar.style.width=((cur+1)/slides.length*100)+'%';
+      counter.textContent=String(cur+1).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0');
+    }
+  });},{threshold:[0.55]});
+  slides.forEach(s=>io.observe(s)); slides[0].classList.add('active');
+
+  /* 표지 클릭 → 전체화면 + 시작 */
+  const cover=document.getElementById('coverFolder');
+  cover.addEventListener('click',()=>{
+    const el=document.documentElement;
+    (el.requestFullscreen||el.webkitRequestFullscreen||function(){}).call(el);
+    setTimeout(()=>goTo(1),120);
+  });
+
+  /* 목차 폴더 클릭 → 해당 슬라이드 */
+  document.querySelectorAll('.fld[data-go]').forEach(f=>{
+    f.addEventListener('click',()=>goTo(parseInt(f.dataset.go,10)));
+  });
+
+  /* 키보드 */
+  window.addEventListener('keydown',(e)=>{
+    if(['ArrowRight','ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();goTo(cur+1);}
+    else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();goTo(cur-1);}
+    else if(e.key==='Home'){e.preventDefault();goTo(0);}
+    else if(e.key==='End'){e.preventDefault();goTo(slides.length-1);}
+    else if(e.key==='f'||e.key==='F'){const el=document.documentElement;(el.requestFullscreen||function(){}).call(el);}
+  });
+
+  /* 터치 스와이프 */
+  let ty=0;
+  window.addEventListener('touchstart',e=>ty=e.touches[0].clientY,{passive:true});
+  window.addEventListener('touchend',e=>{const dy=ty-e.changedTouches[0].clientY;if(Math.abs(dy)>50)goTo(cur+(dy>0?1:-1));},{passive:true});
+})();
+</script>
+</body>
+</html>
